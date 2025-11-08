@@ -15,13 +15,13 @@ description: |
   Vue animations (use motion-v variant), SVG/Canvas (use GSAP skill)
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 metadata:
-  version: "2.0.0"
+  version: "3.0.0"
   author: "Motion Dev Standards"
   tags: ["motion", "framer-motion", "animation", "react", "nextjs", "svelte", "astro", "gestures", "scroll", "parallax", "microinteractions", "spring-physics", "layout-animations"]
   min_claude_version: "3.5"
   created: "2025-11-07"
   updated: "2025-11-08"
-  optimization: "Progressive loading, compressed core, reality-based caching"
+  optimization: "Research-backed: imperative language, few-shot (3 examples), layered complexity, progressive loading"
 ---
 
 # Motion Dev Animations
@@ -51,17 +51,37 @@ Generate production-grade animations using Motion.dev following Apple/Jon Ive pr
 
 ## Workflow: Clarify → Plan → Implement → Verify
 
-### 1) Clarify
-Ask: Framework? Animation type? Design goal? Trigger? Performance constraints?
+### Step 1: Clarify Requirements
+Determine project context and animation goals:
+- Framework (React 19+, Next.js 15+, Svelte 5+, Astro 4+)
+- Animation type (entrance, gesture, scroll, layout)
+- Design goal (subtle, prominent, playful, professional)
+- Performance constraints (target device, bundle limits, accessibility requirements)
+- Trigger mechanism (mount, viewport, user interaction)
 
-### 2) Plan
-Present: Components to animate, motion type, timing, physics, accessibility approach
+### Step 2: Plan Animation Strategy
+Define implementation approach:
+- Components to animate (headers, cards, buttons, sections)
+- Motion patterns (fade, slide, scale, spring, parallax)
+- Timing specifications (duration, delay, stagger intervals)
+- Physics parameters (stiffness: 300-400, damping: 20, mass: 1)
+- Accessibility fallbacks (prefers-reduced-motion alternatives)
 
-### 3) Implement
-Execute phases: Setup → Core animation → Refinement → Accessibility → Optimization
+### Step 3: Implement in Phases
+Build animations incrementally:
+- **Setup**: Install Motion.dev, configure imports, prepare component structure
+- **Core Animation**: Apply motion properties (initial, animate, transition)
+- **Refinement**: Tune timing, easing curves, spring physics for natural feel
+- **Accessibility**: Add reduced-motion detection, keyboard navigation support
+- **Optimization**: Verify GPU-acceleration, minimize bundle size, test performance
 
-### 4) Verify
-Checklist: ≥60fps, no layout shift, prefers-reduced-motion, keyboard nav, mobile responsive
+### Step 4: Verify Quality Standards
+Check against requirements:
+- **Performance**: ≥60fps (Chrome DevTools → Performance tab)
+- **Layout Stability**: CLS = 0 (Lighthouse audit)
+- **Accessibility**: Honors prefers-reduced-motion (system settings test)
+- **Keyboard Navigation**: All interactive elements keyboard-accessible
+- **Mobile Responsive**: Touch-friendly gestures, tested on iOS/Android
 
 ## Animation Pattern Decision Tree
 
@@ -181,9 +201,9 @@ npm install motion
 npm install motion-v
 ```
 
-## Common Patterns (Copy-Paste)
+## Common Patterns (Copy-Paste Ready)
 
-### Fade Up Entrance
+### Pattern 1: Fade Up Entrance
 ```tsx
 <motion.div
   initial={{ opacity: 0, y: 20 }}
@@ -192,7 +212,7 @@ npm install motion-v
 />
 ```
 
-### Hover Card
+### Pattern 2: Hover Card
 ```tsx
 <motion.div
   whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.12)" }}
@@ -200,7 +220,7 @@ npm install motion-v
 />
 ```
 
-### Scroll Reveal
+### Pattern 3: Scroll Reveal
 ```tsx
 <motion.div
   initial={{ opacity: 0, y: 50 }}
@@ -209,16 +229,7 @@ npm install motion-v
 />
 ```
 
-### Staggered List
-```tsx
-const containerVariants = {
-  visible: { transition: { staggerChildren: 0.1 } }
-}
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
-}
-```
+**More patterns**: Staggered lists, exit animations, layout transitions → `./examples/` directory
 
 ## Error Handling
 
@@ -229,22 +240,24 @@ const itemVariants = {
 | Layout shift | Set explicit dimensions, use layout prop |
 | Exit not working | Wrap with `<AnimatePresence>`, add key prop |
 
-## Best Practices
+## Implementation Best Practices
 
-1. Start simple (fade + slide) → add complexity
-2. Use variants for maintainability
-3. Spring physics by default (more natural)
-4. Stagger lists for rhythm/hierarchy
-5. Test on mobile (touch gestures, performance)
-6. Always provide reduced-motion fallback
-7. Profile with Chrome DevTools → Performance tab
+1. **Start simple** → Build from fade + slide, add complexity incrementally
+2. **Extract variants** → Define animation states as named variants for maintainability
+3. **Prefer spring physics** → Default to spring transitions (more natural than tween)
+4. **Stagger list items** → Use staggerChildren (0.1-0.2s) for rhythm and hierarchy
+5. **Test mobile thoroughly** → Verify touch gestures, performance on iOS/Android devices
+6. **Include reduced-motion** → Always provide prefers-reduced-motion fallback animations
+7. **Profile performance** → Use Chrome DevTools Performance tab, target ≥60fps
 
-## Design Philosophy (Apple/Jon Ive)
+## Design Philosophy (Apple/Jon Ive Principles)
 
-- **Simplicity**: 200-400ms duration, minimal simultaneous motion, prefer transforms
-- **Natural Physics**: Spring animations, avoid linear easing, mass-based movement
-- **Purposeful Motion**: Guide attention, provide feedback, create hierarchy
-- **Elegant Restraint**: Less is more, consistent timing, respect user preferences
+Apply these design principles to all animations:
+
+- **Simplicity**: Use 200-400ms durations, minimize simultaneous motion, prefer transform properties
+- **Natural Physics**: Implement spring-based transitions, avoid linear easing, apply mass-based movement
+- **Purposeful Motion**: Guide user attention, provide interaction feedback, establish visual hierarchy
+- **Elegant Restraint**: Apply "less is more" principle, maintain consistent timing, respect user motion preferences
 
 ## Validation
 
@@ -254,8 +267,10 @@ For structured output validation, see:
 
 ## Metadata
 
-**Version**: 2.0.0
-**Optimization**: Progressive loading (87% token reduction)
+**Version**: 3.0.0 (Research-Backed Optimization)
+**Optimization**: Imperative language, few-shot patterns (3 examples), layered complexity, progressive loading
+**Token Efficiency**: 87% core reduction (15K → 2K) + auto-caching
 **Motion.dev**: v11+
 **Frameworks**: React 19+, Next.js 15+, Svelte 5+, Astro 4+, Vue 3+
+**Research**: arXiv 2402.07927v1, 2211.01910, 2310.14735v5, PubMed 40334089
 **License**: MIT
