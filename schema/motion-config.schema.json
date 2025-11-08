@@ -1,0 +1,203 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Motion.dev Animation Configuration",
+  "description": "JSON schema for validating Motion.dev animation configurations",
+  "type": "object",
+  "required": ["type", "component", "props"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["entrance", "gesture", "scroll", "layout"],
+      "description": "Animation category"
+    },
+    "component": {
+      "type": "string",
+      "pattern": "^motion\\.(div|button|section|article|nav|header|footer|aside|main|span|p|h1|h2|h3|h4|h5|h6|ul|ol|li|a|img|svg|path|circle|rect)$",
+      "description": "Motion component type (e.g., motion.div)"
+    },
+    "props": {
+      "type": "object",
+      "properties": {
+        "initial": {
+          "type": "object",
+          "description": "Starting animation state"
+        },
+        "animate": {
+          "type": "object",
+          "description": "Target animation state"
+        },
+        "exit": {
+          "type": "object",
+          "description": "Exit animation state (requires AnimatePresence)"
+        },
+        "transition": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["spring", "tween", "inertia"]
+            },
+            "duration": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 5,
+              "description": "Duration in seconds (tween only)"
+            },
+            "stiffness": {
+              "type": "number",
+              "minimum": 50,
+              "maximum": 1000,
+              "description": "Spring stiffness (100=slow, 500=fast)"
+            },
+            "damping": {
+              "type": "number",
+              "minimum": 5,
+              "maximum": 100,
+              "description": "Spring damping (10=bouncy, 50=no bounce)"
+            },
+            "mass": {
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 10,
+              "description": "Spring mass (0.5=light, 5=heavy)"
+            },
+            "ease": {
+              "description": "Easing function (string or array)",
+              "oneOf": [
+                {
+                  "type": "string",
+                  "enum": ["linear", "easeIn", "easeOut", "easeInOut", "circIn", "circOut", "circInOut", "backIn", "backOut", "backInOut", "anticipate"]
+                },
+                {
+                  "type": "array",
+                  "items": {"type": "number"},
+                  "minItems": 4,
+                  "maxItems": 4,
+                  "description": "Custom cubic bezier [x1, y1, x2, y2]"
+                }
+              ]
+            },
+            "delay": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10,
+              "description": "Delay before animation starts (seconds)"
+            }
+          }
+        },
+        "whileHover": {
+          "type": "object",
+          "description": "State during hover"
+        },
+        "whileTap": {
+          "type": "object",
+          "description": "State during tap/click"
+        },
+        "whileFocus": {
+          "type": "object",
+          "description": "State during keyboard focus"
+        },
+        "whileInView": {
+          "type": "object",
+          "description": "State when in viewport"
+        },
+        "viewport": {
+          "type": "object",
+          "properties": {
+            "once": {
+              "type": "boolean",
+              "description": "Animate only once (true) or every time (false)"
+            },
+            "amount": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Percentage visible to trigger (0.3 = 30%)"
+            },
+            "margin": {
+              "type": "string",
+              "pattern": "^-?\\d+px( -?\\d+px){0,3}$",
+              "description": "Offset margin (e.g., '0px 0px -100px 0px')"
+            }
+          }
+        },
+        "drag": {
+          "oneOf": [
+            {"type": "boolean"},
+            {"type": "string", "enum": ["x", "y"]}
+          ],
+          "description": "Enable dragging (true, 'x', or 'y')"
+        },
+        "dragConstraints": {
+          "type": "object",
+          "properties": {
+            "left": {"type": "number"},
+            "right": {"type": "number"},
+            "top": {"type": "number"},
+            "bottom": {"type": "number"}
+          },
+          "description": "Drag boundaries in pixels"
+        },
+        "layout": {
+          "type": "boolean",
+          "description": "Enable automatic layout animations (FLIP)"
+        },
+        "layoutId": {
+          "type": "string",
+          "description": "Shared layout ID for morphing animations"
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "properties": {
+        "fps": {
+          "type": "number",
+          "minimum": 30,
+          "maximum": 144,
+          "description": "Target frames per second (≥60 recommended)"
+        },
+        "gpuAccelerated": {
+          "type": "boolean",
+          "description": "Uses GPU-accelerated properties (transform/opacity)"
+        },
+        "bundleSize": {
+          "type": "number",
+          "maximum": 51200,
+          "description": "Bundle size in bytes (<50KB)"
+        }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "required": ["reducedMotion"],
+      "properties": {
+        "reducedMotion": {
+          "type": "boolean",
+          "description": "Honors prefers-reduced-motion"
+        },
+        "keyboardNav": {
+          "type": "boolean",
+          "description": "Keyboard navigable"
+        },
+        "focusVisible": {
+          "type": "boolean",
+          "description": "Has visible focus indicator"
+        },
+        "screenReaderFriendly": {
+          "type": "boolean",
+          "description": "No essential info in animation only"
+        }
+      }
+    },
+    "framework": {
+      "type": "string",
+      "enum": ["react", "nextjs", "svelte", "astro", "vue", "vanilla"],
+      "description": "Target framework"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the animation"
+    }
+  }
+}

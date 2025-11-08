@@ -1,0 +1,33 @@
+{
+  "type": "entrance",
+  "component": "motion.div",
+  "props": {
+    "initial": {
+      "opacity": 0,
+      "y": 20
+    },
+    "animate": {
+      "opacity": 1,
+      "y": 0
+    },
+    "transition": {
+      "type": "spring",
+      "stiffness": 300,
+      "damping": 20,
+      "mass": 1
+    }
+  },
+  "performance": {
+    "fps": 120,
+    "gpuAccelerated": true,
+    "bundleSize": 45000
+  },
+  "accessibility": {
+    "reducedMotion": true,
+    "keyboardNav": true,
+    "focusVisible": true,
+    "screenReaderFriendly": true
+  },
+  "framework": "react",
+  "description": "Hero section fade-up entrance animation with spring physics"
+}
