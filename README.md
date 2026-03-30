@@ -1,278 +1,160 @@
-# Motion Dev Animations Skill
+<div align="center">
 
-> Professional web animations using Motion.dev (successor to Framer Motion)
-> **Version 3.0** - Research-Backed Optimization (arXiv, PubMed, Anthropic Official Patterns)
+# Motion.dev Animations Skill
 
-## Overview
+**Production-grade web animations for Claude Code, powered by Motion.dev.**
 
-This Claude Code skill helps you create beautiful, performant animations for modern web applications using Motion.dev. **Optimized with progressive loading** for 87% token reduction while maintaining full functionality.
+[![Star this repo](https://img.shields.io/github/stars/199-biotechnologies/motion-dev-animations-skill?style=for-the-badge&logo=github&label=%E2%AD%90%20Star%20this%20repo&color=yellow)](https://github.com/199-biotechnologies/motion-dev-animations-skill/stargazers)
+[![Follow @longevityboris](https://img.shields.io/badge/Follow_%40longevityboris-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/longevityboris)
 
-## Features
+[![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-6C47FF?style=for-the-badge&logo=anthropic&logoColor=white)](https://docs.anthropic.com/en/docs/claude-code)
+[![Motion.dev](https://img.shields.io/badge/Motion.dev-v11-FF0055?style=for-the-badge&logo=framer&logoColor=white)](https://motion.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-- ✅ **Comprehensive Examples**: Hero sections, scroll effects, gestures, micro-interactions
-- ✅ **Production Templates**: Ready-to-use Next.js pages and component libraries
-- ✅ **Complete API Reference**: All Motion.dev components, hooks, and utilities
-- ✅ **Design Principles**: Following Apple/Jon Ive philosophy (simplicity, elegance, purpose)
-- ✅ **Performance Optimized**: GPU-accelerated, 120fps animations
-- ✅ **Accessibility First**: Respects prefers-reduced-motion, keyboard navigation
-- ✅ **Framework Support**: React, Next.js, Svelte, Astro, Vue, Vanilla JS
-- ✅ **Context Engineered**: Progressive loading, compressed core, validation schemas
+A Claude Code skill that generates 120fps GPU-accelerated animations using Motion.dev (the successor to Framer Motion). Say "add a hero animation" or "create scroll effects" and get production-ready TypeScript code with accessibility and performance baked in.
+
+---
+
+[Why This Exists](#why-this-exists) | [Install](#install) | [Quick Start](#quick-start) | [How It Works](#how-it-works) | [Animation Types](#animation-types) | [What's Inside](#whats-inside) | [Contributing](#contributing) | [License](#license)
+
+</div>
+
+---
+
+## Why This Exists
+
+Motion.dev has 10M+ downloads per month. It is the standard for web animations in React, Next.js, Svelte, and Astro. But writing good animations is hard. You need spring physics, GPU-accelerated properties, `prefers-reduced-motion` support, and 60fps+ performance targets.
+
+This skill gives Claude Code deep knowledge of Motion.dev patterns so it can generate production animation code from natural language. No more copying from docs. No more guessing spring values. Just describe what you want.
+
+## Install
+
+Add to your Claude Code skills directory:
+
+```bash
+# Clone into your skills folder
+git clone https://github.com/199-biotechnologies/motion-dev-animations-skill.git ~/.claude/skills/motion-dev-animations
+
+# Or add as a git submodule in your project
+git submodule add https://github.com/199-biotechnologies/motion-dev-animations-skill.git .claude/skills/motion-dev-animations
+```
+
+The skill activates automatically when you mention animations, Motion.dev, scroll effects, parallax, hover effects, or interactive UI in your prompts.
 
 ## Quick Start
 
-This skill is automatically available when you mention Motion.dev, animations, or interactive UI in your requests to Claude Code.
-
-**Trigger phrases:**
-- "Create animations with Motion.dev"
-- "Add scroll effects"
-- "Implement hero section animation"
-- "Build interactive cards with hover effects"
-
-## Structure
+Once installed, use natural language with Claude Code:
 
 ```
-motion-dev-animations/
-├── SKILL.md                    # Compressed core (1800 tokens, 87% reduction)
-├── README.md                   # This file
-├── examples/                   # Loaded on-demand (progressive)
-│   ├── hero-fade-up.md
-│   ├── scroll-reveal.md
-│   ├── card-hover.md
-│   ├── parallax-layers.md
-│   └── magnetic-button.md
-├── reference/                  # Loaded on-demand (progressive)
-│   ├── api-reference.md
-│   └── spring-physics.md
-├── templates/                  # Starter code
-│   ├── nextjs-page.tsx
-│   └── component-library.tsx
-├── schema/                     # Validation (NEW)
-│   └── motion-config.schema.json
-└── scripts/                    # Validation tools (NEW)
-    └── validate_motion_config.py
+"Create a hero section with a fade-up entrance animation"
+"Add parallax scrolling to this landing page"
+"Build a card component with hover lift and shadow effects"
+"Implement drag-to-reorder for this list"
+"Add a magnetic button effect to the CTA"
 ```
 
-## Examples Included
+Claude Code will clarify your framework, plan the animation strategy, generate the code, and verify performance.
 
-### Hero Sections
-- **Hero Fade Up** - Classic Apple-style fade + slide entrance
-- **Hero Stagger** - Orchestrated title, subtitle, CTA animations
+## How It Works
+
+The skill follows a four-step workflow:
+
+1. **Clarify** -- Determines your framework (React 19+, Next.js 15+, Svelte 5+, Astro 4+), animation type, and design goals.
+2. **Plan** -- Selects the right Motion.dev patterns, spring physics, and easing curves for your use case.
+3. **Implement** -- Generates TypeScript/JSX code using GPU-accelerated properties (transform, opacity, filter only). No layout thrashing.
+4. **Verify** -- Checks for 60fps+ performance, `prefers-reduced-motion` support, keyboard navigation, and bundle size under 50KB.
+
+The skill uses progressive loading. The core instructions are ~2,000 tokens. Examples, API reference, and templates load on-demand only when needed. This means 87% less context consumption compared to loading everything upfront.
+
+## Animation Types
+
+### Entrance Animations
+- **Hero Fade Up** -- Apple-style fade + slide entrance for landing pages
+- **Hero Stagger** -- Orchestrated title, subtitle, CTA sequence
+- **Scroll Reveal** -- Intersection Observer fade-in on scroll
 
 ### Scroll Effects
-- **Scroll Reveal** - Intersection Observer fade-in on scroll
-- **Parallax Layers** - Multi-speed depth effect
-- **Scroll Progress** - Reading progress bar
+- **Parallax Layers** -- Multi-speed depth effect with `useScroll` and `useTransform`
+- **Scroll Progress** -- Reading progress bar tied to scroll position
 
-### Gestures & Interactions
-- **Card Hover** - Elegant lift with shadow
-- **Magnetic Button** - Cursor-following effect
-- **Drag Carousel** - Touch-friendly slider
+### Gesture Interactions
+- **Card Hover** -- Lift with shadow using `whileHover`
+- **Magnetic Button** -- Cursor-following effect for CTAs
+- **Drag Carousel** -- Touch-friendly horizontal slider with `drag` constraints
 
 ### Micro-interactions
-- **Button Press** - Satisfying tap feedback
-- **Toggle Switch** - Smooth state transition
-- **Loading Spinner** - Spring-based loader
+- **Button Press** -- Tactile tap feedback with `whileTap`
+- **Toggle Switch** -- Smooth state transitions with `layout` animations
+- **Loading Spinner** -- Spring-based loader animation
 
 ### Layout Animations
-- **List Reorder** - Drag-to-reorder with FLIP
-- **Accordion** - Smooth expand/collapse
-- **Tab Switch** - Shared layout transitions
+- **List Reorder** -- Drag-to-reorder with FLIP technique
+- **Accordion** -- Smooth expand/collapse with `AnimatePresence`
+- **Tab Switch** -- Shared layout transitions with `layoutId`
 
-## Design Philosophy
+## What's Inside
 
-All animations follow these principles:
-
-1. **Purposeful** - Every animation serves a function
-2. **Smooth** - 120fps GPU-accelerated performance
-3. **Accessible** - Respects user preferences
-4. **Performant** - Uses transforms/opacity only
-5. **Elegant** - Subtle, refined, never distracting
-6. **Consistent** - Unified timing across application
-
-## Installation
-
-Motion.dev is automatically installed when needed:
-
-```bash
-npm install motion
 ```
-
-For Vue:
-```bash
-npm install motion-v
+motion-dev-animations-skill/
+├── SKILL.md                          # Core instructions (~2,000 tokens)
+├── examples/                         # Animation patterns (loaded on-demand)
+│   ├── hero-fade-up.md               # Apple-style entrance animation
+│   ├── scroll-reveal.md              # Intersection Observer reveals
+│   ├── card-hover.md                 # Hover lift + shadow effect
+│   ├── parallax-layers.md            # Multi-speed parallax
+│   ├── magnetic-button.md            # Cursor-following button
+│   └── example-config.json           # Sample motion config
+├── reference/                        # API docs (loaded on-demand)
+│   ├── api-reference.md              # Full Motion.dev API
+│   └── spring-physics.md             # Spring values and presets
+├── templates/                        # Starter code
+│   ├── nextjs-page.tsx               # Full page with animations
+│   └── component-library.tsx         # Reusable animation components
+├── schema/                           # Validation
+│   └── motion-config.schema.json     # JSON schema for configs
+└── scripts/                          # Tools
+    └── validate_motion_config.py     # Config validator
 ```
-
-## Usage Example
-
-When you ask Claude Code to create animations, it will:
-
-1. **Clarify** - Ask about framework, animation type, design goals
-2. **Plan** - Present structured animation strategy
-3. **Implement** - Generate code with proper Motion.dev patterns
-4. **Verify** - Check performance, accessibility, mobile responsiveness
 
 ## Performance Standards
 
-All generated animations must meet:
+Every animation this skill generates meets these targets:
 
-- ✓ 60fps minimum (120fps ideal)
-- ✓ GPU-accelerated properties (transform, opacity, filter)
-- ✓ No layout thrashing
-- ✓ Bundle size < 50kb
-- ✓ Respects prefers-reduced-motion
-- ✓ Keyboard navigable
+| Metric | Target | Method |
+|--------|--------|--------|
+| Frame rate | 60fps+ (120fps ideal) | GPU-accelerated transforms only |
+| Bundle size | < 50KB | Tree-shaking, code splitting |
+| Accessibility | Full | `prefers-reduced-motion` respected |
+| Layout shifts | Zero | No width/height animations |
+| Keyboard support | Full | Focus states, navigation |
+
+## Framework Support
+
+| Framework | Version | Status |
+|-----------|---------|--------|
+| React | 19+ | Full support |
+| Next.js | 15+ | Full support (App Router) |
+| Svelte | 5+ | Full support |
+| Astro | 4+ | Full support |
+| Vue | 3+ | Use `motion-v` package |
+| Vanilla JS | ES2020+ | Via `motion` package |
 
 ## Contributing
 
-This skill is part of your personal Claude Code skills. Feel free to:
-
-- Add more examples in `examples/`
-- Expand reference documentation in `reference/`
-- Create new templates in `templates/`
-- Customize SKILL.md instructions
-
-## Resources
-
-- **Official Docs**: https://motion.dev
-- **Examples**: https://examples.motion.dev
-- **GitHub**: https://github.com/motiondivision/motion
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. The short version: add examples in `examples/`, expand API docs in `reference/`, or create templates in `templates/`.
 
 ## License
 
-MIT
+[MIT](LICENSE)
 
-## Context Engineering (Version 2.0)
+---
 
-### Optimization Strategy
+<div align="center">
 
-**Version 2.0** implements reality-based context engineering following official Claude Code patterns:
+Built by [Boris Djordjevic](https://github.com/longevityboris) at [199 Biotechnologies](https://github.com/199-biotechnologies) | [Paperfoot AI](https://paperfoot.ai)
 
-1. **Progressive Loading** ✅
-   - SKILL.md: 1800 tokens (compressed core)
-   - Examples: Loaded on-demand when needed
-   - Reference docs: Loaded on-demand when needed
-   - **Result**: 87% token reduction (15K → 2K core)
+[![Star this repo](https://img.shields.io/github/stars/199-biotechnologies/motion-dev-animations-skill?style=for-the-badge&logo=github&label=%E2%AD%90%20Star%20this%20repo&color=yellow)](https://github.com/199-biotechnologies/motion-dev-animations-skill/stargazers)
+[![Follow @longevityboris](https://img.shields.io/badge/Follow_%40longevityboris-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/longevityboris)
 
-2. **Improved Skill Description** ✅
-   - Specific trigger keywords for better invocation
-   - Clear INPUT/OUTPUT contract
-   - Explicit exclusions (when NOT to use)
-
-3. **Structured Validation** ✅
-   - JSON schema for motion configs
-   - Python validation script
-   - Automated quality checks
-
-4. **Auto-Caching** (Claude Code Built-in)
-   - No manual cache markers needed
-   - Claude Code auto-caches skill files ≥1024 tokens
-   - Additional 85% latency reduction on subsequent calls
-
-### Token Analysis
-
-| Scenario | Before v2.0 | After v2.0 | Savings |
-|----------|-------------|------------|---------|
-| **First invocation** | 15,000 tokens | 2,000 tokens | **87%** |
-| **With 1 example** | 15,000 tokens | 3,500 tokens | **77%** |
-| **With API reference** | 15,000 tokens | 4,000 tokens | **73%** |
-
-**Cost Impact** (10 requests):
-- Before: 10 × 15K = 150K tokens
-- After: 10 × 4K avg = 40K tokens
-- **Savings: 73%** + auto-caching benefits
-
-### Validation
-
-Test animation configs:
-
-```bash
-# Validate single config
-python scripts/validate_motion_config.py config.json
-
-# Validate all configs in directory
-python scripts/validate_motion_config.py --all examples/
-
-# Install dependencies
-pip install jsonschema
-```
-
-## Version
-
-3.0.0 (2025-11-08) - Research-Backed Optimization
-2.0.0 (2025-11-08) - Context Engineering Optimization
-1.0.0 (2025-11-07) - Initial Release
-
-## Version 3.0: Research-Backed Optimization
-
-**Version 3.0** implements 10 research-backed principles from academic papers (arXiv, PubMed) and official Anthropic patterns:
-
-### 10 Principles Applied
-
-1. **✅ Imperative Language** - Verb-first instructions throughout (NOT second person)
-   - Before: "Ask: Framework?"
-   - After: "Determine project context and animation goals"
-
-2. **✅ Progressive Disclosure** - Three-tier loading architecture
-   - Metadata: ~150 tokens (discovery)
-   - SKILL.md: ~2,000 tokens (core instructions)
-   - Supporting files: Loaded on-demand
-
-3. **✅ Specific Over General** - Quantified requirements (numbers, not adjectives)
-   - ≥60fps (not "smooth")
-   - <50KB bundle (not "small")
-   - 300-400 stiffness (not "moderate spring")
-
-4. **✅ Format Examples** - Optimal few-shot (3 canonical patterns)
-   - Reduced from 4 to 3 examples
-   - Research shows 2-5 examples = 40-60% improvement
-
-5. **✅ Checkmarks for Clarity** - Visual requirement indicators
-   - ✅ Use for: React/Next.js/Svelte animations
-   - ❌ Don't use for: CSS-only transitions, Vue projects
-
-6. **✅ Decision Trees** - ASCII branching logic for animation patterns
-   - Visual hierarchy
-   - Scannable conditional logic
-   - Links to progressive resources
-
-7. **✅ Avoid Duplication** - Link to references, don't inline
-   - Quick reference table in SKILL.md
-   - Full API linked to ./reference/api-reference.md
-
-8. **✅ Layered Complexity** - High-level → technical details pattern
-   - Action statement + context + nested details
-   - Applied to entire workflow section
-
-9. **✅ Quality Standards** - Explicit functional + aesthetic requirements
-   - Performance table with verification methods
-   - Design philosophy (Apple/Jon Ive principles)
-   - Anti-patterns specified
-
-10. **✅ Description Formula** - WHAT + WHEN + INPUT + OUTPUT + NOT FOR
-    - Complete discovery contract
-    - ~110 tokens (optimal for metadata)
-
-### Research Sources
-
-- **arXiv 2402.07927v1**: Systematic Survey of Prompt Engineering
-- **arXiv 2211.01910**: LLMs Are Human-Level Prompt Engineers
-- **arXiv 2310.14735v5**: Unleashing Potential of Prompt Engineering
-- **arXiv 2506.14641v1**: Revisiting Chain-of-Thought Prompting
-- **PubMed 40334089**: Prompt Engineering in Interventional Radiology
-- **Anthropic Official**: skill-creator, artifacts-builder patterns
-
-### Key Improvements v2.0 → v3.0
-
-| Aspect | v2.0 | v3.0 | Improvement |
-|--------|------|------|-------------|
-| **Language** | Mixed imperative/informal | Pure imperative (verb-first) | +clarity |
-| **Examples** | 4 inline | 3 canonical (optimal) | Research-backed |
-| **Workflow** | Flat structure | Layered (high-level → details) | +scannability |
-| **Research** | None cited | 5 academic papers cited | +credibility |
-| **Validation** | Manual | VALIDATION_V3.md checklist | +rigor |
-
-### Validation
-
-See [VALIDATION_V3.md](./VALIDATION_V3.md) for comprehensive validation against all 10 principles with evidence and research citations.
-
-**Result**: Production-grade skill backed by academic research, official patterns, and real-world best practices.
+</div>
